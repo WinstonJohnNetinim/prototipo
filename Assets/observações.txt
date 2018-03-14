@@ -1,0 +1,2 @@
+grid unit de 32px.
+sprite importado com pixel per unit de 32.
