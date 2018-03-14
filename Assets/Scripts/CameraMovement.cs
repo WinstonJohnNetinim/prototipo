@@ -10,12 +10,13 @@ public class CameraMovement : MonoBehaviour
 	{
 		horizontalMovement = Input.GetAxis ("Horizontal");
 
+		//player movendo para trás no cenário
 		if (horizontalMovement < 0) {
 			return;
 		}
-
-		if (transform.position.x < playerTransform.position.x) {
-			
+		//player à frente da câmera
+		if (playerTransform.position.x > transform.position.x) {
+			transform.position = new Vector3 (playerTransform.position.x, transform.position.y, transform.position.z);
 		}
 	}
 }
