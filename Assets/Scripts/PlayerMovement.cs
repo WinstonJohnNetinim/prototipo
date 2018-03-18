@@ -68,27 +68,23 @@ public class PlayerMovement : MonoBehaviour
 		//quando o player se movimenta, de fato
 		if (isSneaking && Mathf.Abs(rB2D.velocity.x) < maxSpeed * sneakRelativeSpeed)
 		{
-			//transform.Translate (Vector3.right * horizontalInput * sneakRelativeSpeed);
 			rB2D.AddForce(Vector2.right * horizontalAcceleration * sneakRelativeSpeed * horizontalInputRaw * Time.deltaTime);
 		}
 		if (!isSneaking && Mathf.Abs(rB2D.velocity.x) < maxSpeed)
 		{
-			//transform.Translate (Vector3.right * horizontalInput);
 			rB2D.AddForce(Vector2.right * horizontalAcceleration * horizontalInputRaw * Time.deltaTime);
 		}
 
-
 		//quando o player pula
-		if (Input.GetButtonDown("Jump") && !isSneaking)
+		if (Input.GetButtonDown("Jump") && !isSneaking && hit)
 		{
-			if (hit.collider != null)
+			if (Mathf.Approximately(rB2D.velocity.x, 0f))
 			{
-				Debug.Log("pulando");
+				//quando parado consegue pular mais alto
+				rB2D.AddForce(Vector2.up * jumpForce * 1.15f, ForceMode2D.Impulse);
+			} else
+			{
 				rB2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-			}
-			else
-			{
-				Debug.Log("hit null");
 			}
 		}
 	}
