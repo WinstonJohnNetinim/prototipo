@@ -23,6 +23,18 @@ public class PlayerMovement : MonoBehaviour
 		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 
+	bool wat = false;
+
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if (rB2D.velocity.y < 0 && !wat)
+		{
+			Debug.Log(transform.position);
+			GameObject.Find("Platform").GetComponent<PlatformHandle>().PlayerGrapple(spriteRenderer);
+			wat = true;
+		}
+	}
+
 	void Update()
 	{
 		horizontalInput = Input.GetAxis("Horizontal");
@@ -82,7 +94,8 @@ public class PlayerMovement : MonoBehaviour
 			{
 				//quando parado consegue pular mais alto
 				rB2D.AddForce(Vector2.up * jumpForce * 1.15f, ForceMode2D.Impulse);
-			} else
+			}
+			else
 			{
 				rB2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 			}
