@@ -10,7 +10,7 @@ public class PlatformHandle : MonoBehaviour
 
 	void Start()
 	{
-		Time.timeScale = Time.timeScale / 2;
+		//Time.timeScale = Time.timeScale / 2;
 	}
 
 	public void PlayerGrapple(SpriteRenderer spriteRenderer)
@@ -35,12 +35,11 @@ public class PlatformHandle : MonoBehaviour
 
 	IEnumerator ElevatorRise()
 	{
-		float initTime = Time.time;
-		float yIncrement = (transform.localPosition.y - 0.001f) / riseTime;
+		float yIncrement = (0.001f - platformElevator.transform.localPosition.y)/riseTime;
 
 		while (platformElevator.transform.localPosition.y < 0.001f)
 		{
-			platformElevator.transform.localPosition += Vector3.up * Time.deltaTime;
+			platformElevator.transform.localPosition += Vector3.up * yIncrement * Time.deltaTime;
 			yield return new WaitForEndOfFrame();
 		}
 
@@ -49,6 +48,12 @@ public class PlatformHandle : MonoBehaviour
 
 	IEnumerator PlatformPush()
 	{
-		yield return null;
+		float xIncrement = (platformElevator.transform.position.x - platformPusher.transform.position.x) / pushTime;
+
+		while (platformPusher.transform.position.x < platformElevator.transform.position.x)
+		{
+			platformPusher.transform.position += Vector3.right * xIncrement * Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
 	}
 }

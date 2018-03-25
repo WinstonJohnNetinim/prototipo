@@ -455,7 +455,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 442424975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -998,7 +998,7 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1259119311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1171,8 +1171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformElevator: {fileID: 1259119311}
   platformPusher: {fileID: 442424975}
-  riseTime: 1
-  pushTime: 1
+  riseTime: 0.3
+  pushTime: 0.2
 --- !u!1 &1357205701
 GameObject:
   m_ObjectHideFlags: 0
